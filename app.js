@@ -110,7 +110,14 @@ app.post('/sync', (req, res) => {
     const _file = req.files[0];
     const FILE_NAME = _file['originalname'] + '.js';
     const WIDGET_FILE = path.join(SCRIPTS_DIR, FILE_NAME);
-    fs.renameSync(_file['path'], WIDGET_FILE);
+    // 解决跨区重命名文件出现的权限问题
+    var readStream=fs.createReadStream(_file['path']);
+    var writeStream=fs.createWriteStream(WIDGET_FILE);
+    readStream.pipe(writeStream);
+    readStream.on('end',function(){
+        fs.unlinkSync(_file['path']);
+    });
+    // fs.renameSync(_file['path'], WIDGET_FILE);
     res.send('ok');
     console.log(`[*] 小组件源码（${_file['originalname']}）已同步，请打开编辑`);
     FILE_DATE = fs.statSync(WIDGET_FILE).mtimeMs;
@@ -149,7 +156,6 @@ app.post('/console', (req, res) => {
 
 // 获取当前电脑IP
 function getIPAdress() {
-    return '192.168.50.7'
     var interfaces = os.networkInterfaces();
     for (var devName in interfaces) {
         var iface = interfaces[devName];
