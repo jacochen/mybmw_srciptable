@@ -824,7 +824,7 @@ let DEPENDENCIES = [
 let BMW_SERVER_HOST = 'https://myprofile.bmw.com.cn';
 let JS_CDN_SERVER = 'https://cdn.jsdelivr.net/gh/opp100/bmw-scriptable-widgets/lib';
 
-let DEFAULT_BG_COLOR_LIGHT = '#cc3399';
+let DEFAULT_BG_COLOR_LIGHT = '#ffffff';
 let DEFAULT_BG_COLOR_DARK = '#0099ff';
 let DEFAULT_LOGO_LIGHT = 'https://z3.ax1x.com/2021/11/16/IRfMQO.png';
 let DEFAULT_FG_COLOR = '#111111';
@@ -1774,6 +1774,7 @@ class Widget extends Base {
     }
 
     addFontShadow(text) {
+        return
         text.shadowColor = new Color('#333333', 0.5)
         text.shadowRadius = 0.5
         text.shadowOffset = new Point(1, 1)

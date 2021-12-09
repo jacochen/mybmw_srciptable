@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app",
-    "build": "node pack Scripts/「源码」斑驳的小沙包-Navi.js"
+    "build": "node pack Scripts/「源码」斑驳的小沙包-linker.js"
   },
   "author": "",
   "license": "ISC",
